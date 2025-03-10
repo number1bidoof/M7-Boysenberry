@@ -49,21 +49,21 @@ function createLightbox(){
   lbNext.innerHTML = "&#9654"
   lbNext.onclick = showNext;
 
-  // Design the lightbox Play-Pause button
+  // Design the Play-Pause button
   lightbox.appendChild(lbPlay);
   lbPlay.id = "lbPlay";
   lbPlay.innerHTML = "&#9199"
   let timeID;
-  lbPlay.onclick = function(){
-   if (timeID){
-      // Stop the Slideshow
-      window.clearInterval(timeID);
-      timeID = undefined;
-   } else {
-      showNext();
-      timeID = window.setInterval(showNext, 1500)
+  lbPlay.onclick = function() {
+      if (timeID) {
+         //stop slideshow
+         window.clearInterval(timeID);
+         timeID = undefined;
+      } else {
+         showNext();
+         timeID = window.setInterval(showNext, 1500)
+      }
    }
-  }
 
   // Design the lightbox image container
   lightbox.appendChild(lbImages);
@@ -73,12 +73,13 @@ function createLightbox(){
    let image = document.createElement('img');
    image.src = imgFiles[i];
    image.alt = imgCaptions[i];
+   image.onclick = createOverlay1
    lbImages.appendChild(image);
   }
   // Function to move forward through the images
   function showNext(){
-   lbImages.appendChild(lbImages.firstElementChild, lbImages.nextSibling);
-   (currentImg < imageCount) ? currentImg ++ : currentImg = 1;
+   lbImages.appendChild(lbImages.firstElementChild);
+   (currentImg < imgCount) ? currentImg++ : currentImg = 1;
    lbCounter.textContent = currentImg + " / " + imgCount;
   }
   // Function to move backwards through the images
@@ -107,7 +108,7 @@ function createLightbox(){
    // Add a close button to the overlay
    let closeBox = document.createElement("div");
    closeBox.id = "lbOverlayClose";
-   closeBox.innerHTML = "&$times";
+   closeBox.innerHTML = "test";
    closeBox.onclick = function(){
       document.body.removeChild(overlay)
    }
@@ -161,7 +162,6 @@ function setupGallery() {
       let image = document.createElement("img");
       image.src = imgFiles[i];
       image.alt = imgCaptions[i];
-      image.onclick = createOverlay1;
       image.onclick = createModal;
       slideBox.appendChild(image);
    }
