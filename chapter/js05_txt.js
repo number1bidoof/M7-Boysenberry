@@ -4,8 +4,8 @@
       Chapter Case
 
       Application to generate a slide show
-      Author: 
-      Date:   
+      Author: Ayah Abdalla 
+      Date: 3/9/2025
 
       Filename: js05.js
 */
@@ -108,7 +108,7 @@ function createLightbox(){
    // Add a close button to the overlay
    let closeBox = document.createElement("div");
    closeBox.id = "lbOverlayClose";
-   closeBox.innerHTML = "test";
+   closeBox.innerHTML = "&times;";
    closeBox.onclick = function(){
       document.body.removeChild(overlay)
    }
